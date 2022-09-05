@@ -5,6 +5,5 @@ export const AppPaper = styled(Paper)<PaperProps>(({ theme }) => {
   return {
     padding: theme.spacing(3),
     width: '100%',
-    elevation: 3,
   }
 })

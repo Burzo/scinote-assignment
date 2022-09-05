@@ -18,13 +18,14 @@ export const AppAutocomplete = ({ numbersOnly, ...props }: Props) => {
       multiple
       options={[]}
       freeSolo
+      autoSelect
       renderTags={(value: readonly string[], getTagProps) =>
         value.map((option: string, index: number) => (
           <Chip variant="outlined" label={option} {...getTagProps({ index })} />
         ))
       }
       value={field.value}
-      onChange={(e: any, newValue: string[]) => {
+      onChange={(e: any, newValue: string[], reason, details) => {
         form.setFieldValue(props.field.name, newValue)
       }}
       renderInput={(params) => (

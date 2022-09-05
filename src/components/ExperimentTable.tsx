@@ -15,6 +15,8 @@ import {
   TableRow,
   Toolbar,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material'
 import { AppPaper } from './AppPaper'
 import { useState } from 'react'
@@ -77,6 +79,9 @@ type Props = {
 }
 
 export const ExperimentTable = ({ data, onChange }: Props) => {
+  const theme = useTheme()
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'))
+
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -197,13 +202,15 @@ export const ExperimentTable = ({ data, onChange }: Props) => {
           anchorEl={anchorEl}
           onClose={handleClose}
           anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
+            vertical: 'bottom',
+            horizontal: 'center',
           }}
           transformOrigin={{
             vertical: 'center',
             horizontal: 'center',
           }}
+          anchorReference={isSmallScreen ? 'anchorPosition' : undefined}
+          anchorPosition={isSmallScreen ? { top: 0, left: 0 } : undefined}
           sx={{
             maxHeight: 500,
             '& .MuiPopover-paper': {
